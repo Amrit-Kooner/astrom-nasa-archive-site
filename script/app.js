@@ -26,7 +26,7 @@ const moreBtn = document.querySelector("#more-btn");
 const clearBtn = document.querySelector("#clear-btn");
 const searchedItemContainer = document.querySelector(".searched-item-wrapper")
 let objIndex = 0;
-let searchLimit = 10;
+let searchLimit = 5;
 
 // -------------------------
 
@@ -197,9 +197,15 @@ if(marsBtn){
 
 
 
-// TODO : OPTOMIZE
+// TODO : OPTOMIZE AND SEARCH ENGINE MORE
 // moreBtn.style.display = "none" / moreBtn.style.display = "block"
 // searchedItemContainer.innerHTML = "";
+
+
+
+
+
+
 
 
 
@@ -224,10 +230,21 @@ function checkResult(data){
     return false;
 }
 
+
+
+
+
+
+
+
+
+
 // add comment here
 async function iterateMedia(data, format){
 
     const items = data.collection.items.slice(objIndex, (data.length < searchLimit ? data.length : searchLimit) + objIndex);
+
+    console.log(data.collection.items)
 
     if(checkResult(items)) return;
     
@@ -235,7 +252,7 @@ async function iterateMedia(data, format){
 
     for(let i of items){
         const mediaResponse = await getData(i.href);
-        let mediaSource = mediaResponse.find((m) => format.test(m)).trim()
+        let mediaSource = mediaResponse.find((m) => format.test(m)).trim();
    
         mediaVal === "image" 
         ? updateUI(`<a class="image-wrapper-link" title="View Full Image" href="${mediaSource}" target="_blank"><img src="${mediaSource}"></a>`) 
@@ -247,14 +264,26 @@ async function iterateMedia(data, format){
     if(moreBtn){
         moreBtn.addEventListener("click", function(e){
             e.stopImmediatePropagation();
+            e.stopPropagation();
+            e.preventDefault();
 
-            moreBtn.style.display = "none"
             objIndex += searchLimit;
             iterateMedia(data, format)
         })
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+// add comment here
 async function updateAudioMedia(data){
     const validAudioFormats = /\.(mp3|wav|ogg|m4a)$/i;
 
@@ -317,6 +346,7 @@ if(searchBtn){
     })
 }
 
+// add comment here
 if(clearBtn){
     clearBtn.addEventListener("click", function(){
         searchedItemContainer.innerHTML = "";
