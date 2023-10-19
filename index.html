@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title -->
+    <title>NASA's APOD - (Astronomy Picture of the Day)</title>
+    <!-- script  -->
+    <script defer src="script/app.js"></script>
+    <script src="https://kit.fontawesome.com/64885c474e.js" crossorigin="anonymous"></script>
+    <!-- link -->
+    <link rel="stylesheet" href="/style/main.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="https://api.nasa.gov/" target="_blank" title="NASA API SITE" class="logo">
+                <img src="img/NASA-logo.jpg" alt="NASA LOGO">
+            </a>
+            <a href="index.html" class="logo" title="Astrom - NASA Archive">
+                <img src="img/astrom-logo.png" alt="ASTROM LOGO">
+            </a>
+        </div>
+
+        <nav>
+            <ul class="nav-list">
+                <li class="active"><a>apod</a></li>
+                <li><a href="mars.html">mars</a></li>
+                <li><a href="search.html">search</a></li>
+                <!-- <li><a href="#">gallary</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="APOD-section">
+            <div class="container">
+                <h1 class="heading">Astronomy Picture of the Day! (APOD)</h1>
+
+                <div class="date-picker input-wrapper">
+                    <span>or pick a date!</span>
+                    <input type="date" class="date-input" min="1995-06-16">
+                    <button class="APOD-btn btn" id="APOD-btn"><i class="fa-solid fa-rocket"></i></button>
+                </div>
+
+                <figure>
+                    <a target="_blank" title="View HD Version" class="APOD-link loading-container">
+                        <img class="APOD-img" src="img/background-default.jpg" alt="main-image">
+                        <div class="loading-effect"><i class="fa-solid fa-spinner"></i></div>
+                    </a> 
+                    <figcaption>copyright - <span class="APOD-copyright">lol</span></figcaption>
+                </figure>
+
+                <div class="APOD-info-container">
+                    <div class="APOD-date"></div>
+                    <h3 class="APOD-title"></h3>
+                    <p class="APOD-desc"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

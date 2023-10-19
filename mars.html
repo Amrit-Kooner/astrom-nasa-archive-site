@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- meta -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- title -->
+        <title>NASA's Mars Rover Pictures</title>
+        <!-- script  -->
+        <script defer src="script/app.js"></script>
+        <script src="https://kit.fontawesome.com/64885c474e.js" crossorigin="anonymous"></script>
+        <!-- link -->
+        <link rel="stylesheet" href="/style/main.css" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    </head>
+    
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="https://api.nasa.gov/" target="_blank" title="NASA API SITE" class="logo">
+                <img src="img/NASA-logo.jpg" alt="NASA LOGO">
+            </a>
+            <a href="index.html" class="logo" title="Astrom - NASA Archive">
+                <img src="img/astrom-logo.png" alt="ASTROM LOGO">
+            </a>
+        </div>
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">apod</a></li>
+                <li class="active"><a>mars</a></li>
+                <li><a href="search.html">search</a></li>
+                <!-- <li><a href="#">gallary</a></li> -->
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="mars-section">
+            <div class="container">
+                <h1 class="heading">Mars Rover Images!</h1>
+                <div class="input-wrapper">
+                    <select class="rover-select">
+                        <option value="" disabled selected>Choose rover...</option>
+                        <option value="spirit">Spirit</option>
+                        <option value="curiosity">Curiosity</option>
+                        <option value="opportunity">Opportunity</option>
+                    </select>
+    
+                    <div class="cam-wrapper">
+                        <select class="cam-select">
+                            <option value="" disabled selected>Choose camera...</option>  
+                        </select>
+                    </div>
+    
+                    <button class="mars-btn btn" id="mars-btn"><i class="fa-solid fa-earth-oceania"></i></button>
+                </div>
+    
+                <a class="mars-link loading-container" title="Open In New Tab" target="_blank">
+                    <img class="mars-img">
+                    <div class="loading-effect"><i class="fa-solid fa-spinner"></i></div>
+                </a>
+            </div>
+
+            <div class="container">
+                <div class="mars-info-container">
+                    <p>rover: <span class="mars-rover-name"></span></p>
+                    <p>cam: <span class="mars-cam-name"></span> - <span class="mars-cam-fn"></span></p>
+                    <hr>
+                    <p>rover lauch date: <span class="mars-cover-lauch-date"></span></p>
+                    <p>rover landing date: <span class="mars-cover-landing-date"></span></p>
+                    <hr>
+                    <p>picture earth date taken: <span class="mars-earth-date"></span></p>
+                    <p>picture sol date taken: <span class="mars-sol-date"></span> (number of days on mars)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <h>
+        <!-- meta -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- title -->
+        <title>NASA's - Search Media</title>
+        <!-- script  -->
+        <script defer src="script/app.js"></script>
+        <script src="https://kit.fontawesome.com/64885c474e.js" crossorigin="anonymous"></script>
+        <!-- link -->
+        <link rel="stylesheet" href="/style/main.css" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    </head>
+    
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="https://api.nasa.gov/" target="_blank" title="NASA API SITE" class="logo">
+                <img src="img/NASA-logo.jpg" alt="NASA LOGO">
+            </a>
+            <a href="index.html" class="logo" title="Astrom - NASA Archive">
+                <img src="img/astrom-logo.png" alt="ASTROM LOGO">
+            </a>
+        </div>
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">apod</a></li>
+                <li><a href="mars.html">mars</a></li>
+                <li class="active"><a>search</a></li>
+                <!-- <li><a href="#">gallary</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <h1 class="heading">Search Space Related Media!</h1>
+            <div class="input-wrapper">
+                <button id="clear-btn" class="btn"><i class="fa-solid fa-trash"></i></button>
+                
+                <select class="media-select">
+                    <option value="" disabled selected>Choose media...</option>
+                    <option value="image">IMAGE</option>
+                    <option value="video">VIDEO</option>
+                    <option value="audio">AUDIO</option>
+                </select>
+
+                <div class="search-bar">
+                    <input class="search-bar-input" type="text" placeholder="Search...">
+                    <button id="search-btn" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+            <div class="container">
+                <h3>no results found</h3>
+                
+                <div class="searched-item-wrapper"></div>
+
+                <button id="more-btn" class="btn">See more</button>
+            </div>
+
+        </section>
+    </main>
+</body>
+</html>
