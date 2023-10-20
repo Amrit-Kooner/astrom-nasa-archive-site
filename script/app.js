@@ -25,6 +25,7 @@ const searchBtn = document.querySelector("#search-btn");
 const moreBtn = document.querySelector("#more-btn");
 const clearBtn = document.querySelector("#clear-btn");
 const searchedItemContainer = document.querySelector(".searched-item-wrapper")
+let isEventListenerAdded = false;
 let objIndex = 0;
 let searchLimit = 5;
 
@@ -110,9 +111,7 @@ function addCamOptions(array){
     camSelect.innerHTML = "";
     camSelect.innerHTML = '<option value="" disabled selected>Choose camera...</option>';
 
-    array.forEach((op) => {
-        camSelect.innerHTML += `<option value=${op}>${op}</option>`;
-    });
+    array.forEach((op) => camSelect.innerHTML += `<option value=${op}>${op}</option>`);
 }
 
 // add comment here
@@ -189,26 +188,6 @@ if(marsBtn){
 
 // -------------------------
 
-
-
-
-
-
-
-
-
-// TODO : OPTOMIZE AND SEARCH ENGINE MORE
-// moreBtn.style.display = "none" / moreBtn.style.display = "block"
-// searchedItemContainer.innerHTML = "";
-
-
-
-
-
-
-
-
-
 // add comment here
 function updateUI(mediItem){
     searchedItemContainer.innerHTML += mediItem; 
@@ -217,6 +196,8 @@ function updateUI(mediItem){
 // add comment here
 function checkResult(data){
     const noResutsTitle = document.querySelector(".search-section h3");
+
+    console.log(searchInput.value)
 
     if(data.length === 0){
         noResutsTitle.style.display = "block";
@@ -230,27 +211,16 @@ function checkResult(data){
     return false;
 }
 
-
-
-
-
-
-
-
-
-
 // add comment here
 async function iterateMedia(data, format){
+    const allItems = data.collection.items;
+    const slicedItems = allItems.slice(objIndex, (allItems.length < searchLimit ? allItems.length : searchLimit) + objIndex);
 
-    const items = data.collection.items.slice(objIndex, (data.length < searchLimit ? data.length : searchLimit) + objIndex);
+    if(checkResult(slicedItems)) return;
 
-    console.log(data.collection.items)
-
-    if(checkResult(items)) return;
-    
     const mediaVal = mediaSelect.value;
 
-    for(let i of items){
+    for(let i of slicedItems){
         const mediaResponse = await getData(i.href);
         let mediaSource = mediaResponse.find((m) => format.test(m)).trim();
    
@@ -259,29 +229,21 @@ async function iterateMedia(data, format){
         : updateUI(`<${mediaVal} controls><source src="${mediaSource}"></source></${mediaVal}>`)
     }
 
-    if(!data.length < searchLimit) moreBtn.style.display = "block";
+    if(allItems.length > searchLimit)  moreBtn.style.display = "block";
 
-    if(moreBtn){
-        moreBtn.addEventListener("click", function(e){
+    if (moreBtn && !isEventListenerAdded) {
+        moreBtn.addEventListener("click", function(e) {
             e.stopImmediatePropagation();
             e.stopPropagation();
             e.preventDefault();
 
+            moreBtn.style.display = "none";
             objIndex += searchLimit;
-            iterateMedia(data, format)
-        })
+            iterateMedia(data, format);
+        });
+        isEventListenerAdded = true;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 // add comment here
 async function updateAudioMedia(data){
@@ -339,8 +301,9 @@ if(searchBtn){
         }else if(!mediaVal){
             alert("Please choose a media!");
         } else{
-            moreBtn.style.display = "none"
+            objIndex = 0;
             searchedItemContainer.innerHTML = "";
+            moreBtn.style.display = "none"
             getSearch(searchInputVal, mediaVal);
         }
     })

@@ -307,8 +307,13 @@ nav {
 }
 
 .search-section .container h3{
+    margin-top: 150px;
     text-transform: uppercase;
     display: none;
+    text-align: center;
+    color: red;
+    letter-spacing: 2px;
+    text-decoration: underline;
 }
 
 .search-section .search-bar .search-bar-input{
