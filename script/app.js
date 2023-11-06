@@ -215,6 +215,7 @@ function checkResult(data){
 async function iterateMedia(data, format){
     const allItems = data.collection.items;
     const slicedItems = allItems.slice(objIndex, (allItems.length < searchLimit ? allItems.length : searchLimit) + objIndex);
+    const remainingItems = [...allItems].splice(searchLimit + objIndex)
 
     if(checkResult(slicedItems)) return;
 
@@ -229,7 +230,7 @@ async function iterateMedia(data, format){
         : updateUI(`<${mediaVal} controls><source src="${mediaSource}"></source></${mediaVal}>`)
     }
 
-    if(allItems.length > searchLimit)  moreBtn.style.display = "block";
+    if (remainingItems.length > searchLimit) moreBtn.style.display = "block";
 
     if (moreBtn && !isEventListenerAdded) {
         moreBtn.addEventListener("click", function(e) {
